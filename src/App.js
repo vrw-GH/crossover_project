@@ -1,10 +1,11 @@
 import "./App.css";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import Picture from "./components/Picture";
 import Navibar from "./components/Navibar";
 import MarketsList from "./components/MarketsList";
 import { Route } from "react-router-dom";
-import { client } from "./components/client";
+//import { client } from "./components/client";
 import Footer from "./components/Footer";
 import Market from "./components/Market";
 import Contact from "./components/Contact";
@@ -15,54 +16,64 @@ import SearchForm from "./components/form";
 
 const App = () => {
   const [markets, setMarkets] = useState([]);
+  const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchQry1, setSearchQry1] = useState("");
-  const [searchQry2, setSearchQry2] = useState("");
+  const [searchQry1, setSearchQry1] = useState(""); // restaurant
+  const [searchQry2, setSearchQry2] = useState(""); // city
 
   const handleSearchClick = (e) => {
     e.preventDefault();
-    console.log(e.target.form[0].value);
-    console.log(e.target.form[1].value);
-    if (e.target.form[0].value === "" || e.target.form[1].value === "") {
-      alert("Please enter something in search");
+    if (e.target.form[0].value === "" && e.target.form[1].value === "") {
+      alert("Please enter something in a field");
     } else {
-      // setSearchQry1(() => e.target.form[0].value);
-      // setSearchQry2(() => e.target.form[1].value);
-      setSearchQry1(e.target.form[0].value);
-      setSearchQry2(e.target.form[1].value);
-      console.log(searchQry1);
-      console.log(searchQry2);
-      // e.target.form[0].value = "";
-      // e.target.form[1].value = "";
+      setSearchQry1(e.target.form[0].value); // restaurant
+      setSearchQry2(e.target.form[1].value); // city
+      e.target.form[0].value = "";
+      e.target.form[1].value = "";
     }
   };
 
-  const handleClearQry1 = () => setSearchQry1("");
-  const handleClearQry2 = () => setSearchQry2("");
+  // const handleClearQry1 = () => setSearchQry1("");
+  // const handleClearQry2 = () => setSearchQry2("");
+
+  const getMarkets = async (searchQry1) => {
+    let url = "https://yelp-project-backend.herokuapp.com/api/restaurants";
+    try {
+      setLoading(true);
+      const results = await axios.get(url);
+      setMarkets(results.data);
+      if (searchQry1) {
+        const ddd = results.data.filter((word) => (word.name = searchQry1));
+        setMarkets(ddd);
+      }
+      //console.log(markets);
+      setLoading(false);
+    } catch (error) {
+      return alert("Sorry, data not found  xxxxx");
+    }
+  };
+
+  const getCities = async () => {
+    let url = "https://yelp-project-backend.herokuapp.com/api/cities";
+    try {
+      setLoading(true);
+      const results = await axios.get(url);
+      setCities(results.data);
+      setLoading(false);
+    } catch (error) {
+      return alert("Sorry, data not found for cities");
+    }
+  };
 
   useEffect(() => {
-    const getMarkets = async () => {
-      try {
-        setLoading(true);
-        const result = await client.getEntries();
-        setMarkets(result.items);
-        //console.log(markets);
-        setLoading(false);
-      } catch (error) {
-        return alert("Sorry, it is too early for Christmas");
-      }
-    };
-    getMarkets();
-  }, []);
+    getCities();
+    getMarkets(searchQry1);
+  }, [searchQry1]);
 
   return (
     <div className="appMainDiv">
       <div className="navigation">
-        <Navibar
-          handleSearchClick={handleSearchClick}
-          handleClearQry1={handleClearQry1}
-          handleClearQry2={handleClearQry2}
-        />
+        <Navibar />
         <div className="landingHeaderDiv">
           <br />
           <h3>yelp</h3>
@@ -70,11 +81,7 @@ const App = () => {
       </div>
       <br />
       <div>
-        <SearchForm
-          handleSearchClick={handleSearchClick}
-          handleClearQry1={handleClearQry1}
-          handleClearQry2={handleClearQry2}
-        />
+        <SearchForm handleSearchClick={handleSearchClick} />
       </div>
 
       <Route exact path="/">
@@ -89,6 +96,26 @@ const App = () => {
             </div>
           ) : (
             <MarketsList markets={markets} />
+          )}
+        </div>
+      </Route>
+
+      <Route exact path="/cities">
+        <div>
+          {loading ? (
+            <div className="bouncer">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : (
+            <MarketsList
+              markets={markets}
+              searchQry1={searchQry1}
+              searchQry2={searchQry2}
+            />
           )}
         </div>
       </Route>

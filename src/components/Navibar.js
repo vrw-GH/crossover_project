@@ -9,7 +9,7 @@ import Home from "./Home";
 //import Market from "./Market";
 import Stars from "./Stars";
 
-const Navibar = ({ handleSearchClick, handleClearQry1, handleClearQry2 }) => {
+const Navibar = () => {
   return (
     <>
       <div className="NavBarContainer">
@@ -34,14 +34,6 @@ const Navibar = ({ handleSearchClick, handleClearQry1, handleClearQry2 }) => {
             </Route>
           </Switch>
         </nav>
-
-        {/* <div>
-          <SearchForm
-            handleSearchClick={handleSearchClick}
-            handleClearQry1={handleClearQry1}
-            handleClearQry2={handleClearQry2}
-          />
-        </div> */}
       </div>
     </>
   );
