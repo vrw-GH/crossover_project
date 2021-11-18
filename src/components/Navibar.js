@@ -1,20 +1,22 @@
 import React from "react";
+//import SearchForm from "./form";
+
 import { NavLink, Switch, Route } from "react-router-dom";
 //importing components
-import About from "./About";
+//import About from "./About";
 import Home from "./Home";
-import Contact from "./Contact";
-import Market from "./Market";
+//import Contact from "./Contact";
+//import Market from "./Market";
 import Stars from "./Stars";
-const Navibar = () => {
+
+const Navibar = ({ handleSearchClick, handleClearQry1, handleClearQry2 }) => {
   return (
     <>
-
       <div className="NavBarContainer">
         <nav>
-           <div>
-             <Stars />
-            </div>  
+          <div>
+            <Stars />
+          </div>
 
           <NavLink className="link" to="/">
             Home
@@ -30,10 +32,16 @@ const Navibar = () => {
             <Route exact path="/">
               <Home />
             </Route>
-
           </Switch>
         </nav>
-        
+
+        {/* <div>
+          <SearchForm
+            handleSearchClick={handleSearchClick}
+            handleClearQry1={handleClearQry1}
+            handleClearQry2={handleClearQry2}
+          />
+        </div> */}
       </div>
     </>
   );

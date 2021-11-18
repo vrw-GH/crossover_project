@@ -10,29 +10,43 @@ import Market from "./components/Market";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import MapMain from "./components/MapMain";
-import Stars from "./components/Stars";
+import SearchForm from "./components/form";
+//import Stars from "./components/Stars";
+
 const App = () => {
   const [markets, setMarkets] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchQry, setSearchQry] = useState("");
+  const [searchQry1, setSearchQry1] = useState("");
+  const [searchQry2, setSearchQry2] = useState("");
 
   const handleSearchClick = (e) => {
     e.preventDefault();
-    if (e.target.form[0].value !== "") {
-      setSearchQry(e.target.form[0].value);
-      e.target.form[0].value = "";
-    } else {
+    console.log(e.target.form[0].value);
+    console.log(e.target.form[1].value);
+    if (e.target.form[0].value === "" || e.target.form[1].value === "") {
       alert("Please enter something in search");
+    } else {
+      // setSearchQry1(() => e.target.form[0].value);
+      // setSearchQry2(() => e.target.form[1].value);
+      setSearchQry1(e.target.form[0].value);
+      setSearchQry2(e.target.form[1].value);
+      console.log(searchQry1);
+      console.log(searchQry2);
+      // e.target.form[0].value = "";
+      // e.target.form[1].value = "";
     }
   };
-  
+
+  const handleClearQry1 = () => setSearchQry1("");
+  const handleClearQry2 = () => setSearchQry2("");
+
   useEffect(() => {
     const getMarkets = async () => {
       try {
         setLoading(true);
         const result = await client.getEntries();
         setMarkets(result.items);
-        console.log(markets);
+        //console.log(markets);
         setLoading(false);
       } catch (error) {
         return alert("Sorry, it is too early for Christmas");
@@ -44,24 +58,23 @@ const App = () => {
   return (
     <div className="appMainDiv">
       <div className="navigation">
-        <Navibar />
+        <Navibar
+          handleSearchClick={handleSearchClick}
+          handleClearQry1={handleClearQry1}
+          handleClearQry2={handleClearQry2}
+        />
         <div className="landingHeaderDiv">
           <br />
           <h3>yelp</h3>
         </div>
-        <form>
-          <input
-            type="search"
-            placeholder="Search by Tag"
-            aria-label="SearchTag"
-          />
-          <input
-            type="search"
-            placeholder="Search by City"
-            aria-label="SearchCity"
-          />
-          <button onClick={(e) => handleSearchClick(e)}>Search</button>
-        </form>
+      </div>
+      <br />
+      <div>
+        <SearchForm
+          handleSearchClick={handleSearchClick}
+          handleClearQry1={handleClearQry1}
+          handleClearQry2={handleClearQry2}
+        />
       </div>
 
       <Route exact path="/">

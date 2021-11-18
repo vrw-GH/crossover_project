@@ -17,8 +17,8 @@ const Market = () => {
         setMarket(result);
         setLoading(false);
       } catch (error) {
-        return alert("Sorry, it is too early for Christmas");
         setLoading(false);
+        return alert("Sorry, it is too early for Christmas");
       }
     };
     getMarket();
@@ -36,22 +36,22 @@ const Market = () => {
           <h5>{market.fields.marketDescription}</h5>
           <div>
             {" "}
-            <img src={market.fields.picture[0].fields.file.url} />{" "}
+            <img src={market.fields.picture[0].fields.file.url} alt="" />{" "}
           </div>
- 
+
           <Maps
             lat={market.fields.location.lat}
             lon={market.fields.location.lon}
           />
         </div>
       ) : (
-        <div className='bouncer'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-       </div>
+        <div className="bouncer">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       )}
     </div>
   );
