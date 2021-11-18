@@ -1,0 +1,535 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-image: linear-gradient(to right, #d2cd54, #6b8d1d, #4a7433); */
+  /* background-image: linear-gradient(to top, black, #25372a); */
+  background-color: rgb(108, 2, 2);
+  background-image: url("./pictures/Xmas-cookies-02.png");
+  background-size: 15em;
+  background-repeat: repeat;
+  color: rgb(248, 254, 217);
+  font-weight: 200;
+  background-attachment: fixed;
+  /* display: flex; */
+  /* justify-content: center; */
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  font-family: Courgette;
+  text-shadow:  -1px -1px 2px rgb(24, 24, 24);
+}
+
+ 
+
+h2 {
+  display: flex;
+  padding: 1rem 0rem;
+}
+
+div {
+  text-align: center;
+}
+
+div > h1 {
+  color: rgb(255, 252, 170);
+  text-align: center;
+  text-shadow: -5px -5px 15px rgb(77, 77, 77), 5px 5px 15px rgb(55, 55, 55);
+}
+ 
+
+/* Styling Navigation Buttons START */
+button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: rgb(247, 250, 255);
+  background-color: rgb(142, 162, 68);
+  border-radius: 10px;
+  margin: 0.3rem;
+  padding: 0.1rem 0.2rem 0rem 0.1rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-align: center;
+  
+}
+
+button:hover {
+  color: rgb(153, 155, 160);
+  box-shadow: -5px -5px 20px rgb(245, 247, 211), 5px 5px 20px rgb(245, 247, 211);
+  background-color: rgb(178, 240, 78);
+  cursor: grabbing;
+}
+
+button:active {
+  color: rgb(11, 74, 11);
+  background-color: rgb(242, 255, 160);
+}
+
+button h2 {
+  padding: 0rem 0.5rem;
+  font-size: 2rem;
+}
+
+/* Styling Navigation Buttons END */
+
+/* ABOUT page styling */
+.creators {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  text-shadow:  -1px -1px 20px rgb(6, 0, 0);
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.picture {
+  padding-top: 4rem;
+}
+/* page titles for Home Contact Aout and landing page  */
+.pageHead {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding-top: 3rem;
+}
+
+.landingHeaderDiv {
+  font-size: 2rem;
+  padding-top: 8rem;
+  text-align: center;
+  text-shadow: -5px -5px 15px rgb(245, 247, 211),
+    5px 5px 15px rgb(245, 247, 211);
+}
+
+/* Top card animation START */
+section {
+  perspective: 2000px;
+  overflow: hidden;
+  max-width: 30vh;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+section:hover {
+  cursor: pointer;
+  background: rgb(53, 2, 15);
+  box-shadow: -5px -5px 20px rgb(245, 247, 211), 5px 5px 20px rgb(245, 247, 211);
+}
+
+.pictireContainer {
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.main-div {
+  display: flex;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 3s ease;
+  /* transform: rotateY(180deg); */
+  /* box-shadow: rgb(16, 16, 16) 0px 5px 15px; */
+}
+
+.backSide,
+.frontSide {
+  width: 100%;
+  height: 100%;
+}
+
+.backSide {
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+/* .frontSide {
+  backface-visibility: hidden;  
+} */
+
+.toggleCard {
+  transition: transform 2s ease;
+  /* box-shadow: rgb(16, 16, 16) 0px 5px 15px; */
+  transform: rotateY(180deg);
+}
+/* Top card animation END */
+
+/* Styling Navigation START */
+.link {
+  color: rgb(247, 250, 255);
+  background-color: rgb(103, 140, 62);
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid rgb(96, 136, 71);
+  margin: 20px;
+  padding: 5px 15px 10px;
+  margin: 0 5px;
+  display: inline-block;
+  border-radius: 10% 10% 50% 50%;
+  text-align: end;
+  box-shadow: inset -2px -3px 4px rgba(18, 18, 18, 0.5),
+    inset 3px 4px 5px rgba(205, 230, 185, 0.8);
+}
+
+.link:hover {
+  color: rgb(11, 74, 11);
+  background-color: rgb(178, 240, 78);
+  cursor: -webkit-grabbing;
+  box-shadow: -5px -5px 20px rgb(245, 247, 211), 5px 5px 20px rgb(245, 247, 211),
+    inset -2px -3px 4px rgba(13, 58, 15, 0.5),
+    inset 3px 4px 5px rgba(255, 255, 255, 0.8);
+}
+
+.link:active {
+  color: rgb(11, 74, 11);
+  background-color: rgb(242, 255, 160);
+  cursor: -webkit-grabbing;
+}
+
+.NavBarContainer {
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2.1rem 0.1rem 6rem 0.1rem;
+  background-image: linear-gradient(
+    rgb(0, 69, 22, 1),
+    rgb(0, 69, 22, 0.95),
+    rgb(108, 2, 2, 0.1),
+    rgb(108, 2, 2, 0.005)
+  );
+  position: fixed;
+  margin-bottom: 2rem;
+  width: 100%;
+  font-size: 1.2rem;
+  z-index: 1;
+/*   z-index: 10; 设定元素显示级别（position:static元素无法设定级别，需要先设置position） */
+}
+
+/* Styling Navigation END */
+
+.xmasTree {
+  font-size: 5rem;
+}
+
+/* Footer styling */
+.footerMainDiv {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  background-size: 100%;
+  padding: 8rem 2rem 2rem 2rem;
+  margin-bottom: 0;
+  background-image: linear-gradient(
+    rgb(108, 2, 2, 0.005),
+    rgb(108, 2, 2, 0.3),
+    rgb(0, 69, 22, 0.95),
+    rgb(0, 69, 22, 1)
+  );
+}
+
+.textFooter {
+  font-size: 1.5rem;
+  padding: 1rem 0rem 0.1rem 0rem;
+  margin: 0;
+}
+
+.textFooter,
+h5,
+h6 {
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  margin: 0;
+}
+
+.socialMedia {
+  padding: 0;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+i {
+  font-size: 2rem;
+  background-color: rgb(160, 103, 32, 0);
+}
+
+i:hover {
+  box-shadow: -2px -2px 10px rgb(245, 247, 211), 2px 2px 10px rgb(245, 247, 211);
+}
+a {
+  padding: 0.8rem;
+  color: rgb(248, 254, 217);
+}
+/* Footer styling  END*/
+
+/* contact  */
+.contactPage {
+  display: flex;
+}
+
+/* Market List */
+
+.marketListContainer {
+  display: flex;
+  margin: 5em auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black;
+  max-width: 90%;
+  border-radius: 50%`;
+}
+
+.marketListItem {
+  flex: 0 1 23em;
+  margin: 2em;
+  background-color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.marketListItem:hover {
+  color: rgb(11, 74, 11);
+  background-color: rgb(178, 240, 78);
+  cursor: -webkit-grabbing;
+  box-shadow: -5px -5px 20px rgb(245, 247, 211), 5px 5px 20px rgb(245, 247, 211);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 18em;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  pointer-events: none;
+}
+
+.thumbnail {
+  pointer-events: none;
+}
+
+.marketListItem h2 {
+  font-family: "Times New Roman", Times, serif;
+  pointer-events: none;
+}
+
+.cityTag {
+  padding: 0 1em 0.5em 0;
+  margin-right: 0;
+  pointer-events: none;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 10.5em;
+}
+
+.textContainer h2 {
+  padding: 1em;
+  pointer-events: none;
+}
+
+/* https://fontawesome.com/v5.15/icons/star */
+ 
+
+
+
+/* Maps styles */
+
+.mapContainer{
+  display: flex;
+}
+
+.mapContainer{
+  justify-content: center;
+  align-items: flex-end;
+  box-shadow: -5px -5px 20px rgb(255, 255, 255), 5px 5px 20px rgb(255, 255, 255);
+  max-width: 70vh;
+  border-radius: 50px;
+  overflow: hidden;
+}
+/* Maps styles END */
+
+.breaks{
+  padding-top: 3rem;
+}
+
+/* spinner */
+.bouncer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 200px;
+  height: 200px;
+}
+
+.bouncer div {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(39, 155, 66);
+  border-radius: 50%;
+  animation: bouncer 0.5s cubic-bezier(0.18, 0.5, 0.3, 0.9) infinite alternate;
+  bottom: 1rem;
+  box-shadow: inset -2px -3px 4px rgba(18, 18, 18, 0.3);
+}
+
+.bouncer div::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 50%;
+  height: 35%;
+  transform: rotate(-45deg);
+  background: linear-gradient(
+    190deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 50%;
+}
+
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-65px);
+  }
+}
+
+.bouncer div:nth-child(1) {
+  background-color: rgb(70, 175, 25);
+  animation-delay: 0.1s;
+}
+.bouncer div:nth-child(2) {
+  
+  background-color: rgb(254, 227, 24);
+  animation-delay: 0.2s;
+}
+.bouncer div:nth-child(3) {
+  background-color: rgb(252, 6, 6);
+  animation-delay: 0.3s;
+}
+.bouncer div:nth-child(4) {
+  background-color: rgb(252, 141, 6);
+  animation-delay: 0.4s;
+}
+.bouncer div:nth-child(5) {
+  background-color: rgb(6, 158, 252);
+  animation-delay: 0.5s;
+}
+
+/* Christmas lights START*/
+.stars {
+  width: 100%;
+  display: flex;
+  
+}
+
+.StarsMainDiv {
+  display: flex;
+  position: fixed;
+}
+
+.circle2 {
+  animation: pulse 4s infinite ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30px;
+  width: 17px;
+  border-radius: 20% 20% 50% 50%;
+  z-index: 10;
+  
+  
+}
+.StarsMainDiv2 {
+  top:0;
+  left:0;
+ 
+ animation-delay: 2s;
+ display: flex;
+ position: absolute;
+ width:100%;
+ align-content: space-around;
+
+ 
+
+ }
+
+ @keyframes pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(1px 1px 13px rgba(255, 255, 255, 1));
+   /* box-shadow: -5px -5px 10px rgb(245, 247, 211), 
+   5px 5px 10px rgb(245, 247, 211); */
+
+  }
+  
+  50% {
+    transform: scale(0.9);
+    filter: drop-shadow(1px 1px 7px rgba(255, 255, 255, 1));
+    /* box-shadow: -5px -5px 20px rgb(245, 247, 211), 
+    5px 5px 20px rgb(245, 247, 211); */
+  }
+ 
+  100% {
+  transform: scale(1);
+  filter: drop-shadow(1px 1px 13px rgba(255, 255, 255, 1));
+   /* box-shadow: -5px -5px 10px rgb(245, 247, 211), 
+   5px 5px 10px rgb(245, 247, 211); */
+   
+  }
+}
+
+.StarsMainDiv2 div:nth-child(1){
+  background-color: rgb(22, 222, 4);
+  transform: rotate(10deg);
+  }
+.StarsMainDiv2 div:nth-child(2) {
+  background-color: rgb(221, 0, 255);
+}
+.StarsMainDiv2 div:nth-child(3) {
+  background-color: red;
+}
+.StarsMainDiv2 div:nth-child(4) {
+  background-color: rgb(85, 110, 253);
+}
+.StarsMainDiv2 div:nth-child(5) {
+  background-color: rgb(255, 255, 0);
+  
+}
+.StarsMainDiv2 div:nth-child(6) {
+  background-color: rgb(255, 153, 0);
+  
+}
+.StarsMainDiv2 div:nth-child(7) {
+  background-color: rgb(221, 0, 255);
+}
+
+.StarsMainDiv2 div:nth-child(8) {
+  background-color: red;
+}
+.StarsMainDiv2 div:nth-child(9) {
+  background-color: rgb(255, 255, 0);
+  
+}
+
+
+/* Christmas lights END*/
