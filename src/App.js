@@ -14,14 +14,25 @@ import Stars from "./components/Stars";
 const App = () => {
   const [markets, setMarkets] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchQry, setSearchQry] = useState("");
 
+  const handleSearchClick = (e) => {
+    e.preventDefault();
+    if (e.target.form[0].value !== "") {
+      setSearchQry(e.target.form[0].value);
+      e.target.form[0].value = "";
+    } else {
+      alert("Please enter something in search");
+    }
+  };
+  
   useEffect(() => {
     const getMarkets = async () => {
       try {
         setLoading(true);
         const result = await client.getEntries();
         setMarkets(result.items);
-        console.log(markets)
+        console.log(markets);
         setLoading(false);
       } catch (error) {
         return alert("Sorry, it is too early for Christmas");
@@ -30,53 +41,61 @@ const App = () => {
     getMarkets();
   }, []);
 
-
   return (
     <div className="appMainDiv">
-
       <div className="navigation">
         <Navibar />
         <div className="landingHeaderDiv">
-          <br/>
-        <h3>yelp</h3>
-      </div>    
-      </div>   
-
-      <Route exact path="/"> 
-     
-      
-      <div>
-        {loading ? (
-                      <div className='bouncer'>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                     </div>
-        ) : (
-          <MarketsList markets={markets} />        
-        )}
+          <br />
+          <h3>yelp</h3>
+        </div>
+        <form>
+          <input
+            type="search"
+            placeholder="Search by Tag"
+            aria-label="SearchTag"
+          />
+          <input
+            type="search"
+            placeholder="Search by City"
+            aria-label="SearchCity"
+          />
+          <button onClick={(e) => handleSearchClick(e)}>Search</button>
+        </form>
       </div>
-      </Route>      
+
+      <Route exact path="/">
+        <div>
+          {loading ? (
+            <div className="bouncer">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : (
+            <MarketsList markets={markets} />
+          )}
+        </div>
+      </Route>
 
       <Route path="/market/:marketID">
-      <Market />
+        <Market />
       </Route>
 
       <Route exact path="/">
-      <MapMain markets={markets}/>
-      </Route>  
+        <MapMain markets={markets} />
+      </Route>
       <Route path="/About">
-              <About />
-            </Route>
-            <Route path="/Contact">
-              <Contact />
-            </Route>
-           <div className='footerMainDiv'>
+        <About />
+      </Route>
+      <Route path="/Contact">
+        <Contact />
+      </Route>
+      <div className="footerMainDiv">
         <Footer />
       </div>
-
     </div>
   );
 };
