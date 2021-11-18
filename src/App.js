@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Picture from "./components/Picture";
+// import Picture from "./components/Picture";
 import Navibar from "./components/Navibar";
 import MarketsList from "./components/MarketsList";
 import { Route } from "react-router-dom";
@@ -37,14 +37,13 @@ const App = () => {
       <div className="navigation">
         <Navibar />
         <div className="landingHeaderDiv">
-        <h3>Christmas Markets of Europe</h3>
+          <br/>
+        <h3>yelp</h3>
       </div>    
       </div>   
 
       <Route exact path="/"> 
-      <div className="picture">
-        <Picture />
-      </div>   
+     
       
       <div>
         {loading ? (
