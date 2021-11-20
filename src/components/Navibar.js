@@ -1,12 +1,7 @@
 import React from "react";
-//import SearchForm from "./form";
 
 import { NavLink, Switch, Route } from "react-router-dom";
-//importing components
-//import About from "./About";
 import Home from "./Home";
-//import Contact from "./Contact";
-//import Market from "./Market";
 import Stars from "./Stars";
 
 const Navibar = () => {

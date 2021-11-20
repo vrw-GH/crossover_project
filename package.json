@@ -1,5 +1,5 @@
 {
-  "name": "xmas-markets",
+  "name": "cross-over",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,8 +17,7 @@
     "react-leaflet": "^3.2.2",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2",
-    "yelp-fusion": "^3.0.0"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",

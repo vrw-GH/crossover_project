@@ -1,87 +1,42 @@
 import "./App.css";
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
-// import Picture from "./components/Picture";
-import Navibar from "./components/Navibar";
-import MarketsList from "./components/MarketsList";
 import { Route } from "react-router-dom";
-//import { client } from "./components/client";
+
+import { getCities, getTags, getRestaurants } from "./components/getData";
+import Navibar from "./components/Navibar";
+import RestaurantsList from "./components/RestaurantsList";
 import Footer from "./components/Footer";
-import Market from "./components/Market";
+import Restaurant from "./components/Restaurant";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import MapMain from "./components/MapMain";
-import SearchForm from "./components/form";
-//import Stars from "./components/Stars";
+import SearchForm from "./components/searchform";
+//import { faCity } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
-  const [markets, setMarkets] = useState([]);
-  const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searchQry1, setSearchQry1] = useState(""); // restaurant
-  const [searchQry2, setSearchQry2] = useState(""); // city
-
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    if (e.target.form[0].value === "" && e.target.form[1].value === "") {
-      alert("Please enter something in a field");
-    } else {
-      setSearchQry1(e.target.form[0].value); // restaurant
-      setSearchQry2(e.target.form[1].value); // city
-      e.target.form[0].value = "";
-      e.target.form[1].value = "";
-    }
-  };
-
-  // const handleClearQry1 = () => setSearchQry1("");
-  // const handleClearQry2 = () => setSearchQry2("");
-
-  const getMarkets = async (searchQry1) => {
-    let url = "https://yelp-project-backend.herokuapp.com/api/restaurants";
-    try {
-      setLoading(true);
-      const results = await axios.get(url);
-      setMarkets(results.data);
-      if (searchQry1) {
-        const ddd = results.data.filter((word) => (word.name = searchQry1));
-        setMarkets(ddd);
-      }
-      //console.log(markets);
-      setLoading(false);
-    } catch (error) {
-      return alert("Sorry, data not found  xxxxx");
-    }
-  };
-
-  const getCities = async () => {
-    let url = "https://yelp-project-backend.herokuapp.com/api/cities";
-    try {
-      setLoading(true);
-      const results = await axios.get(url);
-      setCities(results.data);
-      setLoading(false);
-    } catch (error) {
-      return alert("Sorry, data not found for cities");
-    }
-  };
+  const [restaurants, setRestaurants] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [workingList, setWorkingList] = useState([]);
 
   useEffect(() => {
-    getCities();
-    getMarkets(searchQry1);
-  }, [searchQry1]);
+    getCities(setCities, setLoading);
+    getTags(setTags, setLoading);
+    getRestaurants(setRestaurants, setLoading, setWorkingList);
+  }, []);
+
+  //setWorkingList(restaurants);
 
   return (
     <div className="appMainDiv">
       <div className="navigation">
-        <Navibar />
         <div className="landingHeaderDiv">
-          <br />
-          <h3>yelp</h3>
+          <h3>h'yelp</h3>
+          <hr size="2" width="80%" color="red" />
         </div>
-      </div>
-      <br />
-      <div>
-        <SearchForm handleSearchClick={handleSearchClick} />
+        <Navibar />
       </div>
 
       <Route exact path="/">
@@ -95,7 +50,23 @@ const App = () => {
               <div></div>
             </div>
           ) : (
-            <MarketsList markets={markets} />
+            <>
+              <div>
+                <br />
+                <SearchForm
+                  restaurants={restaurants}
+                  cities={cities}
+                  tags={tags}
+                  setWorkingList={setWorkingList}
+                />
+              </div>
+
+              <RestaurantsList
+                workingList={workingList}
+                restaurants={restaurants}
+                cities={cities}
+              />
+            </>
           )}
         </div>
       </Route>
@@ -111,21 +82,21 @@ const App = () => {
               <div></div>
             </div>
           ) : (
-            <MarketsList
-              markets={markets}
-              searchQry1={searchQry1}
-              searchQry2={searchQry2}
+            <RestaurantsList
+              workingList={workingList}
+              restaurants={restaurants}
+              cities={cities}
             />
           )}
         </div>
       </Route>
 
-      <Route path="/market/:marketID">
-        <Market />
+      <Route path="/restaurants/:restaurantID">
+        <Restaurant restaurants={restaurants} cities={cities} />
       </Route>
 
       <Route exact path="/">
-        <MapMain markets={markets} />
+        <MapMain restaurants={restaurants} cities={cities} />
       </Route>
       <Route path="/About">
         <About />
@@ -133,6 +104,7 @@ const App = () => {
       <Route path="/Contact">
         <Contact />
       </Route>
+
       <div className="footerMainDiv">
         <Footer />
       </div>
