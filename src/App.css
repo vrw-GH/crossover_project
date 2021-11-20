@@ -265,11 +265,11 @@ a {
   display: flex;
 }
 
-/* Market List */
+/* Item List */
 
-.marketListContainer {
+.itemListContainer {
   display: flex;
-  margin: 5em auto;
+  margin: 4em auto;
   flex-wrap: wrap;
   justify-content: center;
   color: black;
@@ -277,8 +277,8 @@ a {
   border-radius: 50%`;
 }
 
-.marketListItem {
-  flex: 0 1 23em;
+.itemListItem {
+  flex: 0 1 3em;
   margin: 2em;
   background-color: white;
   border-radius: 10px;
@@ -286,7 +286,7 @@ a {
   color: black;
 }
 
-.marketListItem:hover {
+.itemList:hover {
   color: rgb(11, 74, 11);
   background-color: rgb(178, 240, 78);
   cursor: -webkit-grabbing;
@@ -295,7 +295,7 @@ a {
 
 .thumbnail img {
   width: 100%;
-  height: 18em;
+  height: 12em;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -312,7 +312,7 @@ a {
 }
 
 .cityTag {
-  padding: 0 1em 0.5em 0;
+  padding: 0 0 1em 0;
   margin-right: 0;
   pointer-events: none;
 }
@@ -321,7 +321,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 10.5em;
+  min-height: 5em;
 }
 
 .textContainer h2 {
@@ -399,24 +399,24 @@ a {
 }
 
 .bouncer div:nth-child(1) {
-  background-color: rgb(70, 175, 25);
+  background-color: rgb(44, 133, 6);
   animation-delay: 0.1s;
 }
 .bouncer div:nth-child(2) {
   
-  background-color: rgb(254, 227, 24);
+  background-color: rgb(3, 187, 13);
   animation-delay: 0.2s;
 }
 .bouncer div:nth-child(3) {
-  background-color: rgb(252, 6, 6);
+  background-color: rgb(7, 163, 67);
   animation-delay: 0.3s;
 }
 .bouncer div:nth-child(4) {
-  background-color: rgb(252, 141, 6);
+  background-color: rgb(91, 148, 79);
   animation-delay: 0.4s;
 }
 .bouncer div:nth-child(5) {
-  background-color: rgb(6, 158, 252);
+  background-color: rgb(22, 77, 24);
   animation-delay: 0.5s;
 }
 

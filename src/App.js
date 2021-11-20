@@ -1,67 +1,42 @@
 import "./App.css";
+
 import React, { useEffect, useState } from "react";
-// import Picture from "./components/Picture";
-import Navibar from "./components/Navibar";
-import MarketsList from "./components/MarketsList";
 import { Route } from "react-router-dom";
-import { client } from "./components/client";
+
+import { getCities, getTags, getRestaurants } from "./components/getData";
+import Navibar from "./components/Navibar";
+import RestaurantsList from "./components/RestaurantsList";
 import Footer from "./components/Footer";
-import Market from "./components/Market";
+import Restaurant from "./components/Restaurant";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import MapMain from "./components/MapMain";
-import Stars from "./components/Stars";
-const App = () => {
-  const [markets, setMarkets] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [searchQry, setSearchQry] = useState("");
+import SearchForm from "./components/searchform";
+//import { faCity } from "@fortawesome/free-solid-svg-icons";
 
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    if (e.target.form[0].value !== "") {
-      setSearchQry(e.target.form[0].value);
-      e.target.form[0].value = "";
-    } else {
-      alert("Please enter something in search");
-    }
-  };
-  
+const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [restaurants, setRestaurants] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [workingList, setWorkingList] = useState([]);
+
   useEffect(() => {
-    const getMarkets = async () => {
-      try {
-        setLoading(true);
-        const result = await client.getEntries();
-        setMarkets(result.items);
-        console.log(markets);
-        setLoading(false);
-      } catch (error) {
-        return alert("Sorry, it is too early for Christmas");
-      }
-    };
-    getMarkets();
+    getCities(setCities, setLoading);
+    getTags(setTags, setLoading);
+    getRestaurants(setRestaurants, setLoading, setWorkingList);
   }, []);
+
+  //setWorkingList(restaurants);
 
   return (
     <div className="appMainDiv">
       <div className="navigation">
-        <Navibar />
         <div className="landingHeaderDiv">
-          <br />
-          <h3>yelp</h3>
+          <h3>h'yelp</h3>
+          <hr size="2" width="80%" color="red" />
         </div>
-        <form>
-          <input
-            type="search"
-            placeholder="Search by Tag"
-            aria-label="SearchTag"
-          />
-          <input
-            type="search"
-            placeholder="Search by City"
-            aria-label="SearchCity"
-          />
-          <button onClick={(e) => handleSearchClick(e)}>Search</button>
-        </form>
+        <Navibar />
       </div>
 
       <Route exact path="/">
@@ -75,17 +50,53 @@ const App = () => {
               <div></div>
             </div>
           ) : (
-            <MarketsList markets={markets} />
+            <>
+              <div>
+                <br />
+                <SearchForm
+                  restaurants={restaurants}
+                  cities={cities}
+                  tags={tags}
+                  setWorkingList={setWorkingList}
+                />
+              </div>
+
+              <RestaurantsList
+                workingList={workingList}
+                restaurants={restaurants}
+                cities={cities}
+              />
+            </>
           )}
         </div>
       </Route>
 
-      <Route path="/market/:marketID">
-        <Market />
+      <Route exact path="/cities">
+        <div>
+          {loading ? (
+            <div className="bouncer">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : (
+            <RestaurantsList
+              workingList={workingList}
+              restaurants={restaurants}
+              cities={cities}
+            />
+          )}
+        </div>
+      </Route>
+
+      <Route path="/restaurants/:restaurantID">
+        <Restaurant restaurants={restaurants} cities={cities} />
       </Route>
 
       <Route exact path="/">
-        <MapMain markets={markets} />
+        <MapMain restaurants={restaurants} cities={cities} />
       </Route>
       <Route path="/About">
         <About />
@@ -93,6 +104,7 @@ const App = () => {
       <Route path="/Contact">
         <Contact />
       </Route>
+
       <div className="footerMainDiv">
         <Footer />
       </div>
