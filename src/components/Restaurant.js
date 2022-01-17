@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
-const Restaurant = ({ restaurants, cities }) => {
+const Restaurant = ({ restaurants, cities, tags }) => {
   const { restaurantID } = useParams();
 
   const filterRestaurants = (restaurant) => {
@@ -15,6 +15,11 @@ const Restaurant = ({ restaurants, cities }) => {
     let city = cityObj === undefined ? "not found" : cityObj.name;
     return city;
   };
+  const getTag = (tag_id) => {
+    let tagObj = tags.find((el) => el.id === Number(tag_id) + 1);
+    let tag = tagObj === undefined ? "not found" : tagObj.name;
+    return tag;
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -25,12 +30,15 @@ const Restaurant = ({ restaurants, cities }) => {
   }, []);
 
   return (
-    <div>
-      <h1> {filteredItem.name} </h1> <h3> {getCity(filteredItem.city_id)}</h3>
+    <div className="restaurantContainer">
+      <h1> {filteredItem.name} </h1>
+
+      <h2>for the best of {getTag(filteredItem.tag_id)} cuisine</h2>
+      <h4>in {getCity(filteredItem.city_id)}</h4>
       <div>
-        {" "}
-        <img src={filteredItem.image} alt="restaurant" />{" "}
+        <img src={filteredItem.image} alt="restaurant" />
       </div>
+
       {/* <Maps
                   lat={market.fields.location.lat}
                   lon={market.fields.location.lon}

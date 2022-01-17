@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const RestaurantsList = ({ workingList, restaurants, cities }) => {
-  const [filteredList, setFilteredList] = useState(restaurants);
+// const RestaurantsList = ({ workingList, restaurants, cities }) => {
+// const [filteredList, setFilteredList] = useState(restaurants);
+const RestaurantsList = ({ workingList, cities }) => {
+  //eslint-disable-next-line
+  const [filteredList, setFilteredList] = useState([...workingList]);
 
   // const filterRestaurants = (restaurant) => {
   //   if (!searchQry3) return restaurants;

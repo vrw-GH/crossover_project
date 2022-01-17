@@ -1,39 +1,33 @@
 import axios from "axios";
-// eslint-disable-next-line
-import React, { useEffect, useState } from "react";
+import addMissingData from "./addMissingData";
+
+const getAll = (setCities, setTags, setRestaurants, setLoading, tags) => {
+  getCities(setCities, setLoading);
+  getTags(setTags, setLoading);
+  getRestaurants(setRestaurants, setLoading, tags);
+};
+
+const rootAPI = "https://yelp-project-backend.herokuapp.com/api";
 
 export const getRestaurants = async (
   setRestaurants,
   setLoading,
-  setWorkingList,
+  tags,
+  // setWorkingList,
   restID
 ) => {
-  let url = "https://yelp-project-backend.herokuapp.com/api/restaurants";
+  let url = `${rootAPI}/restaurants`;
   if (restID) {
-    url = `https://yelp-project-backend.herokuapp.com/api/restaurants/${restID}`;
+    url = `${rootAPI}/${restID}`;
   }
   try {
     setLoading(true);
     const results = await axios.get(url);
     let tArr = results.data;
-    tArr.map((element) => {
-      const getImageURL = async () => {
-        let img = "no image";
-        try {
-          img = await axios.get(`https://loremflickr.com/500/500/restaurant`);
-          img = img.request.responseURL;
-          element.image = img;
-        } catch (error) {
-          console.log("no image");
-        }
-      };
-      getImageURL();
-      return element;
-    });
+    //- add missing "image" and "tag" to the data-----
+    addMissingData(tArr, tags);
     setLoading(false);
-    //console.log(tArr);
     setRestaurants(tArr);
-    setWorkingList(tArr);
   } catch (error) {
     alert("Sorry, data not found for restaurants");
   }
@@ -42,11 +36,8 @@ export const getRestaurants = async (
 export const getCities = async (setCities, setLoading) => {
   try {
     setLoading(true);
-    const results = await axios.get(
-      "https://yelp-project-backend.herokuapp.com/api/cities"
-    );
+    const results = await axios.get(`${rootAPI}/cities`);
     setCities(results.data);
-    //console.log(results.data);
     setLoading(false);
   } catch (error) {
     return alert("Sorry, data not found for cities");
@@ -56,12 +47,12 @@ export const getCities = async (setCities, setLoading) => {
 export const getTags = async (setTags, setLoading) => {
   try {
     setLoading(true);
-    const results = await axios.get(
-      "https://yelp-project-backend.herokuapp.com/api/tags"
-    );
+    const results = await axios.get(`${rootAPI}/tags`);
     setTags(results.data);
     setLoading(false);
   } catch (error) {
     return alert("Sorry, data not found for tags");
   }
 };
+
+export default getAll;
