@@ -23,12 +23,10 @@ body {
   text-shadow:  -1px -1px 2px rgb(24, 24, 24);
 }
 
- 
-
-h2 {
+/* h2 {
   display: flex;
   padding: 1rem 0rem;
-}
+} */
 
 div {
   text-align: center;
@@ -274,7 +272,7 @@ a {
   justify-content: center;
   color: black;
   max-width: 90%;
-  border-radius: 50%`;
+  border-radius: 50%;
 }
 
 .itemListItem {
@@ -329,9 +327,20 @@ a {
   pointer-events: none;
 }
 
-/* https://fontawesome.com/v5.15/icons/star */
- 
 
+/* Restaurant Page */
+
+.restaurantContainer {
+  display:flexbox;
+  margin: 4em auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black;
+  max-width: 90%;
+  border-radius: 50%;
+}
+
+/* https://fontawesome.com/v5.15/icons/star */
 
 
 /* Maps styles */
@@ -419,104 +428,3 @@ a {
   background-color: rgb(22, 77, 24);
   animation-delay: 0.5s;
 }
-
-/* Christmas lights START
-.stars {
-  width: 100%;
-  display: flex;
-  
-}
-
-.StarsMainDiv {
-  display: flex;
-  position: fixed;
-}
-
-.circle2 {
-  animation: pulse 4s infinite ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 30px;
-  width: 17px;
-  border-radius: 20% 20% 50% 50%;
-  z-index: 10;
-  
-  
-}
-.StarsMainDiv2 {
-  top:0;
-  left:0;
- 
- animation-delay: 2s;
- display: flex;
- position: absolute;
- width:100%;
- align-content: space-around;
-
- 
-
- }
-
- @keyframes pulse {
-  0% {
-    transform: scale(1);
-    filter: drop-shadow(1px 1px 13px rgba(255, 255, 255, 1));
-   /* box-shadow: -5px -5px 10px rgb(245, 247, 211), 
-   5px 5px 10px rgb(245, 247, 211); */
-
-  
-/*   
-  50% {
-    transform: scale(0.9);
-    filter: drop-shadow(1px 1px 7px rgba(255, 255, 255, 1));
-    /* box-shadow: -5px -5px 20px rgb(245, 247, 211), 
-    5px 5px 20px rgb(245, 247, 211); */
-   
-/*  
-  100% {
-  transform: scale(1);
-  filter: drop-shadow(1px 1px 13px rgba(255, 255, 255, 1));
-   /* box-shadow: -5px -5px 10px rgb(245, 247, 211), 
-   5px 5px 10px rgb(245, 247, 211); */
-   
-
-/* 
-.StarsMainDiv2 div:nth-child(1){
-  background-color: rgb(22, 222, 4);
-  transform: rotate(10deg);
-  }
-.StarsMainDiv2 div:nth-child(2) {
-  background-color: rgb(221, 0, 255);
-}
-.StarsMainDiv2 div:nth-child(3) {
-  background-color: red;
-}
-.StarsMainDiv2 div:nth-child(4) {
-  background-color: rgb(85, 110, 253);
-}
-.StarsMainDiv2 div:nth-child(5) {
-  background-color: rgb(255, 255, 0);
-  
-}
-.StarsMainDiv2 div:nth-child(6) {
-  background-color: rgb(255, 153, 0);
-  
-}
-.StarsMainDiv2 div:nth-child(7) {
-  background-color: rgb(221, 0, 255);
-}
-
-.StarsMainDiv2 div:nth-child(8) {
-  background-color: red;
-}
-.StarsMainDiv2 div:nth-child(9) {
-  background-color: rgb(255, 255, 0);
-  
-} */
-
-
-/* Christmas lights END*/
